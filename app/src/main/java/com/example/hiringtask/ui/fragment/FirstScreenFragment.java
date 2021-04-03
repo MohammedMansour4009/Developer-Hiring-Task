@@ -18,6 +18,8 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.hiringtask.databinding.FragmentFirstScreenBinding;
 import com.example.hiringtask.model.RemoteConvert;
+import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.OnItemClickListener;
 
 import java.util.Calendar;
 
@@ -33,7 +35,7 @@ public class FirstScreenFragment extends Fragment {
 
     FirstScreenViewModel firstScreenViewModel;
 
-
+    DialogPlus dialog;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -46,6 +48,26 @@ public class FirstScreenFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         init();
         initConvert();
+        initSaveDate();
+    }
+
+    private void initSaveDate() {
+        binding.bSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                  dialog = DialogPlus.newDialog(getContext())
+                        .setOnItemClickListener(new OnItemClickListener() {
+                            @Override
+                            public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
+
+                            }
+                        })
+                        .setExpanded(true)  // This will enable the expand feature, (similar to android L share dialog)
+                        .create();
+                dialog.show();
+            }
+        });
+
     }
 
     private void initConvert() {
@@ -78,22 +100,9 @@ public class FirstScreenFragment extends Fragment {
         };
     }
 
-//    private void getRemoteHome() {
-//        HijriRemoteDao.getInstance().getData(date).enqueue(result -> {
-//            switch (result.getStatus()) {
-//                case HttpStatus.SUCCESS:
-//                    Log.d(TAG, "getRemoteHome: Success");
-//                    remoteConvert = result.getResult();
-//                    String s = remoteConvert.getData().getHijri().getDay() + "-" + remoteConvert.getData().getHijri().getMonth() + "-" + remoteConvert.getData().getHijri().getYear();
-//
-//                    break;
-//                default:
-//                    Log.d(TAG, " not  Success  " + result.getCode() + " " + result.getThrowable());
-//            }
-//        });
-//
-//    }
+
     private void init() {
+        //initialize view model for  MVVM
         firstScreenViewModel = ViewModelProviders.of(this).get(FirstScreenViewModel.class);
     }
 
@@ -106,8 +115,6 @@ public class FirstScreenFragment extends Fragment {
                 binding.tvHijri.setText(mRemoteConvert.getData().getHijri().getDay()
                         + "-" + mRemoteConvert.getData().getHijri().getMonth().getNumber() +
                         "-" + mRemoteConvert.getData().getHijri().getYear());
-//                binding.rvExperience.setAdapter(experienceAdapter);
-//                binding.rvExperience.getAdapter().notifyDataSetChanged();
             }
         });
     }

@@ -21,10 +21,6 @@ public class FirstScreenViewModel extends ViewModel {
                 case HttpStatus.SUCCESS:
                     Log.d(TAG, "getRemoteHome: Success");
                     mutableLiveData.setValue(result.getResult());
-//                    String s = remoteConvert.getData().getHijri().getDay() + "-" + remoteConvert.getData().getHijri().getMonth() + "-" + remoteConvert.getData().getHijri().getYear();
-//                    binding.tvHijri.setText(remoteConvert.getData().getHijri().getDay()
-//                            + "-" + remoteConvert.getData().getHijri().getMonth().getNumber() +
-//                            "-" + remoteConvert.getData().getHijri().getYear());
                     break;
                 default:
                     Log.d(TAG, " not  Success  " + result.getCode() + " " + result.getThrowable());
