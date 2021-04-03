@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Hiring Task</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="enter_gregorian">Enter Gregorian</string>
+
+    <string name="textDescription">Lorem ipsum dolor sit amet,coectetur,Lorem ipsum dolor sit amet,coecteturLorem ipsum dolor sit amet,coecteturLorem ipsum dolor sit amet,coecteturLorem ipsum dolor sit amet,coecteturLorem ipsum dolor sit amet,coecteturLorem ipsum dolor sit amet,coectetur</string>
+    <string name="get_more_than_30_off_when_buying_the_bundle">Get more than 30% off when buying the bundle.</string>
+    <string name="lorem_ipsum_dolor_sit_amet_cing_elit_sed_do_eiusmod_tepor_lorem_ipsum_dolor_sit_amet_coetetur_adipiscing_elit_sed_do_eiusmod">Lorem ipsum dolor sit amet,cing elit,sed do eiusmod tepor,Lorem ipsum dolor sit amet,coetetur adipiscing elit,sed do eiusmod</string>
+    <string name="share">Share</string>
+    <string name="network_error">No internet connection</string>
+    <string name="unexpected_error">Unexpected error.</string>
+    <string name="unauthenticated_error">Unauthenticated error</string>
+    <string name="server_error">We are sorry that the server encountered an internal error
+        and could not complete your request. Please try again later.</string>
+    <string name="client_error">Error connecting to server Please try again later.</string>
+    <string name="error">error</string>
+    <string name="json_error">Error connecting to server Invalid JSON format.</string>
+    <string name="to_many_attempts">Your account has been blocked after multiple consecutive login attempts. We\'ve sent you an email with instructions on how to unblock it.</string>
+    <string name="text_free_point">when an unknown printer took a galley of type and scrambled it to make a type specimen book. it has survived not only five centuries.</string>
+    <string name="description_dount">Large coffee and toasty sandwich</string>
+
+</resources>
