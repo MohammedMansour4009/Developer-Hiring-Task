@@ -44,7 +44,7 @@ public class SecondFragment extends Fragment {
 
     private void init() {
         eventsDatabase = EventsDatabase.getInstance(getContext());
-        eventsAdapter = new EventsAdapter();
+        eventsAdapter = new EventsAdapter(getActivity().getSupportFragmentManager());
 
         eventsDatabase.postsDao().getEvents()
                 .subscribeOn(Schedulers.computation())
@@ -58,7 +58,7 @@ public class SecondFragment extends Fragment {
                     @Override
                     public void onSuccess(List<Events> posts) {
                         eventsAdapter.setEventsList(posts);
-                       binding.rvEvents.setAdapter(eventsAdapter);
+                        binding.rvEvents.setAdapter(eventsAdapter);
                     }
 
                     @Override
