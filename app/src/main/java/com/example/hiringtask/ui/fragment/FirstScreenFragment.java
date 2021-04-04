@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,10 +17,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.hiringtask.databinding.ContentForDialogBinding;
 import com.example.hiringtask.databinding.FragmentFirstScreenBinding;
 import com.example.hiringtask.model.RemoteConvert;
-import com.orhanobut.dialogplus.DialogPlus;
-import com.orhanobut.dialogplus.OnItemClickListener;
 
 import java.util.Calendar;
 
@@ -34,12 +34,15 @@ public class FirstScreenFragment extends Fragment {
     private String date;
 
     FirstScreenViewModel firstScreenViewModel;
+    ContentForDialogBinding dialogBinding;
 
-    DialogPlus dialog;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentFirstScreenBinding.inflate(getLayoutInflater());
+
+        dialogBinding = ContentForDialogBinding.inflate(LayoutInflater.from(getContext()));
+
         return binding.getRoot();
     }
 
@@ -47,30 +50,40 @@ public class FirstScreenFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         init();
-        initConvert();
+        initDatePickerDialog();
+        initButtonConvert();
         initSaveDate();
+    }
+
+    private void initButtonConvert() {
+        binding.bConvert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getRemoteHijri();
+            }
+        });
     }
 
     private void initSaveDate() {
         binding.bSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                  dialog = DialogPlus.newDialog(getContext())
-                        .setOnItemClickListener(new OnItemClickListener() {
-                            @Override
-                            public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
 
-                            }
-                        })
-                        .setExpanded(true)  // This will enable the expand feature, (similar to android L share dialog)
-                        .create();
-                dialog.show();
+                if (mRemoteConvert == null) {
+                    Toast.makeText(getContext(), "Choose a date", Toast.LENGTH_SHORT).show();
+                } else {
+                    EventsDialog exampleDialog = new EventsDialog();
+                    exampleDialog.setData(mRemoteConvert.getData());
+                    exampleDialog.show(getActivity().getSupportFragmentManager(), "exampleDialog");
+                }
             }
         });
 
     }
 
-    private void initConvert() {
+    private void initDatePickerDialog() {
+        Log.d(TAG, "onClick: " + " button dialog2");
+
         binding.tvGregorian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +91,7 @@ public class FirstScreenFragment extends Fragment {
                 int year = calendar.get(Calendar.YEAR);
                 int month = calendar.get(Calendar.MONTH);
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
+
                 DatePickerDialog dialog = new DatePickerDialog(getContext(),
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth, mOnDateSetListener
                         , year, month, day);
@@ -88,14 +102,9 @@ public class FirstScreenFragment extends Fragment {
         mOnDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                Log.d(TAG, "onDateSet: " + year + "-" + month + "-" + dayOfMonth);
                 date = dayOfMonth + "-" + month + "-" + year;
                 binding.tvGregorian.setText(date);
-
                 firstScreenViewModel.getRemoteHome(date);
-                getRemoteInfoApp();
-
-
             }
         };
     }
@@ -106,11 +115,11 @@ public class FirstScreenFragment extends Fragment {
         firstScreenViewModel = ViewModelProviders.of(this).get(FirstScreenViewModel.class);
     }
 
-    private void getRemoteInfoApp() {
+    private void getRemoteHijri() {
         firstScreenViewModel.mutableLiveData.observe(getViewLifecycleOwner(), new Observer<RemoteConvert>() {
             @Override
             public void onChanged(RemoteConvert remoteConvert) {
-                mRemoteConvert=remoteConvert;
+                mRemoteConvert = remoteConvert;
 
                 binding.tvHijri.setText(mRemoteConvert.getData().getHijri().getDay()
                         + "-" + mRemoteConvert.getData().getHijri().getMonth().getNumber() +

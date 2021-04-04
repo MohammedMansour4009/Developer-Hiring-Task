@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/_20sdp"
+    >
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_static_gregorian"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:text="Gregorian :-"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_gregorian"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toEndOf="@id/tv_static_gregorian"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="12/1/2007" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_static_hijri"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:text="Hijri :-"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toEndOf="@id/tv_gregorian"
+        app:layout_constraintTop_toTopOf="parent"
+
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_hijri"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toEndOf="@id/tv_static_hijri"
+        app:layout_constraintTop_toTopOf="parent"
+
+        tools:text="12/1/2007" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_name_event"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="Name Event :- "
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="@id/tv_static_gregorian"
+        app:layout_constraintTop_toBottomOf="@id/tv_static_gregorian" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_name_event_dialog"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:background="@android:color/transparent"
+        android:hint="Write.."
+        app:layout_constraintBottom_toBottomOf="@id/tv_name_event"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tv_name_event"
+        app:layout_constraintTop_toTopOf="@id/tv_name_event" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_description_event"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="Name Description :- "
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="@id/tv_static_gregorian"
+        app:layout_constraintTop_toBottomOf="@id/tv_name_event" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_description_dialog"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:background="@android:color/transparent"
+        android:hint="Write.."
+        app:layout_constraintBottom_toBottomOf="@id/tv_description_event"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tv_description_event"
+        app:layout_constraintTop_toTopOf="@id/tv_description_event" />
+
+    <Button
+        android:id="@+id/b_save_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_description_event"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:text="Save"
+        android:textColor="@android:color/black"
+        android:background="@android:color/transparent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

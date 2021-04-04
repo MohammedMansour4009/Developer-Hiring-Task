@@ -1,9 +1,13 @@
 package com.example.hiringtask.ui.main;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
@@ -24,7 +28,12 @@ public class MainActivity extends BaseBindingActivity<ActivityMainBinding> {
 
     }
 
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull String name, @NonNull Context context, @NonNull AttributeSet attrs) {
+        return super.onCreateView(name, context, attrs);
 
+    }
 
     private void initNavController() {
         navController =   Navigation.findNavController(this, R.id.f_main);
