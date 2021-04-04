@@ -9,6 +9,7 @@ import androidx.room.TypeConverters;
 
 @Database(entities = Events.class, version = 1)
 @TypeConverters(Converters.class)
+
 public abstract class EventsDatabase extends RoomDatabase {
     private static EventsDatabase instance;
     public abstract EventsDao postsDao();

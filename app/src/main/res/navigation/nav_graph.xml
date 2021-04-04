@@ -7,7 +7,16 @@
 
     <fragment
         android:id="@+id/firstScreenFragment"
-        android:name="com.example.hiringtask.ui.fragment.FirstScreenFragment"
+        android:name="com.example.hiringtask.ui.fragment.firstScrren.FirstScreenFragment"
         android:label="fragment_first_screen"
-        tools:layout="@layout/fragment_first_screen" />
+        tools:layout="@layout/fragment_first_screen" >
+        <action
+            android:id="@+id/action_firstScreenFragment_to_secondFragment"
+            app:destination="@id/secondFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/secondFragment"
+        android:name="com.example.hiringtask.ui.fragment.secondScrren.SecondFragment"
+        android:label="fragment_second"
+        tools:layout="@layout/fragment_second" />
 </navigation>

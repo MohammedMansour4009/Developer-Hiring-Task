@@ -1,4 +1,4 @@
-package com.example.hiringtask.ui.fragment;
+package com.example.hiringtask.ui.fragment.firstScrren;
 
 import android.util.Log;
 

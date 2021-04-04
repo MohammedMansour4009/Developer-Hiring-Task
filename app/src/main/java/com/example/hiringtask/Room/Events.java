@@ -1,18 +1,29 @@
 package com.example.hiringtask.Room;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "post_table")
 public class Events {
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
     private int id ;
+    @ColumnInfo(name = "userId")
     private User userId;
+    @ColumnInfo(name = "name")
     private String name;
+    @ColumnInfo(name = "description")
     private String description;
+    @ColumnInfo(name = "gregorianDate")
     private String gregorianDate;
+    @ColumnInfo(name = "hijriDate")
     private String hijriDate;
+    @ColumnInfo(name = "serverDatetime")
     private String serverDatetime;
+
+    public Events() {
+    }
 
     public Events(User userId, String name, String description, String gregorianDate, String hijriDate, String serverDatetime) {
         this.userId = userId;

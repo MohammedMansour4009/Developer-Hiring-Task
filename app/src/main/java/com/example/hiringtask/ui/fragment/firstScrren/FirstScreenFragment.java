@@ -1,6 +1,7 @@
-package com.example.hiringtask.ui.fragment;
+package com.example.hiringtask.ui.fragment.firstScrren;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -16,10 +17,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 
 import com.example.hiringtask.databinding.ContentForDialogBinding;
 import com.example.hiringtask.databinding.FragmentFirstScreenBinding;
 import com.example.hiringtask.model.RemoteConvert;
+import com.example.hiringtask.ui.fragment.secondScrren.SecondFragment;
 
 import java.util.Calendar;
 
@@ -53,6 +57,17 @@ public class FirstScreenFragment extends Fragment {
         initDatePickerDialog();
         initButtonConvert();
         initSaveDate();
+        initButtonGoToEvents();
+    }
+
+    private void initButtonGoToEvents() {
+        binding.bGoToEvents.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavDirections action = FirstScreenFragmentDirections.actionFirstScreenFragmentToSecondFragment();
+                Navigation.findNavController(getView()).navigate(action);
+            }
+        });
     }
 
     private void initButtonConvert() {

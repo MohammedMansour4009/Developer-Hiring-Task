@@ -1,4 +1,4 @@
-package com.example.hiringtask.ui.fragment;
+package com.example.hiringtask.ui.fragment.firstScrren;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -54,10 +54,8 @@ public class EventsDialog extends AppCompatDialogFragment {
     }
 
     private void saveDataInRoom() {
-       binding.bSaveDialog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                eventsDatabase.postsDao().insertEvents(new Events(new User(2,"m7md  "),binding.etNameEventDialog.getText().toString(), binding.etDescriptionDialog.getText().toString(),binding.tvGregorian.getText().toString(),binding.tvHijri.getText().toString(), Calendar.getInstance().getTime().toString()))
+        eventsDatabase = EventsDatabase.getInstance(getContext());
+        eventsDatabase.postsDao().insertEvents(new Events(new User(1,"m7md "),binding.etNameEventDialog.getText().toString(), binding.etDescriptionDialog.getText().toString(),binding.tvGregorian.getText().toString(),binding.tvHijri.getText().toString(), Calendar.getInstance().getTime().toString()))
                         //work in background u should work in anther thread
                         .subscribeOn(Schedulers.computation())//s1
                         .subscribe(new CompletableObserver() {//s2
@@ -76,8 +74,6 @@ public class EventsDialog extends AppCompatDialogFragment {
 
                             }
                         });
-            }
-        });
     }
 
     public Data getData() {
