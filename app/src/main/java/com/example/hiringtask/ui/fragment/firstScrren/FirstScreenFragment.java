@@ -27,14 +27,14 @@ public class FirstScreenFragment extends Fragment {
 
 
     private static final String TAG = "FirstScreenFragment";
-    FragmentFirstScreenBinding binding;
+    private FragmentFirstScreenBinding binding;
     private DatePickerDialog.OnDateSetListener mOnDateSetListener;
     private RemoteConvert remoteConvert;
 
     private String date;
 
-    FirstScreenViewModel firstScreenViewModel;
-    ContentForDialogBinding dialogBinding;
+    private FirstScreenViewModel firstScreenViewModel;
+    private ContentForDialogBinding dialogBinding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

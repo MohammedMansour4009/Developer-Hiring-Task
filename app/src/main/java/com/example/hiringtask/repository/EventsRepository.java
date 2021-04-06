@@ -21,7 +21,7 @@ public class EventsRepository {
 
         eventsDao = database.eventsDao();
 
-        eventsMutableLiveData = eventsDao.getAllNotes();
+        eventsMutableLiveData = eventsDao.getAllEvents();
 
     }
 

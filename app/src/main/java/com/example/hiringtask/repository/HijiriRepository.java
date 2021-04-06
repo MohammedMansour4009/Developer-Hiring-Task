@@ -16,10 +16,9 @@ public class HijiriRepository {
 
     private MutableLiveData<RemoteConvert> eventsMutableLiveData;
 
-    private String TAG="HijiriRepository";
+    private final String TAG="HijiriRepository";
 
-    public HijiriRepository(Application application) {
-        EventsDatabase database = EventsDatabase.getInstance(application);
+    public HijiriRepository() {
 
         eventsMutableLiveData=new MutableLiveData<>();
 

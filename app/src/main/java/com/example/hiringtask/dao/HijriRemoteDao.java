@@ -9,10 +9,10 @@ import retrofit2.http.Query;
 
 public class HijriRemoteDao {
     private static  HijriRemoteDao instance;
-    private DashboardClient dashboardClient;
+    private DashboardHijri dashboardHijri;
 
     public HijriRemoteDao() {
-        dashboardClient = HttpHelper.getInstance().create(DashboardClient.class);
+        dashboardHijri = HttpHelper.getInstance().create(DashboardHijri.class);
     }
 
 
@@ -22,11 +22,11 @@ public class HijriRemoteDao {
         return instance;
     }
     public MyCall<RemoteConvert> getData(String data ) {
-        return dashboardClient.getData(data);
+        return dashboardHijri.getData(data);
     }
 
 
-    private interface DashboardClient {
+    private interface DashboardHijri {
         @GET("gToH")
         public MyCall<RemoteConvert> getData(@Query("date") String date);
     }

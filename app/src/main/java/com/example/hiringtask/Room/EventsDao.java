@@ -27,5 +27,5 @@ public interface EventsDao {
     Completable update(Events events);
 
     @Query("SELECT * FROM post_table ")
-    LiveData<List<Events>> getAllNotes();
+    LiveData<List<Events>> getAllEvents();
 }

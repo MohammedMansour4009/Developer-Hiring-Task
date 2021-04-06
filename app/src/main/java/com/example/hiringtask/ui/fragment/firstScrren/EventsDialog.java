@@ -32,13 +32,13 @@ public class EventsDialog extends AppCompatDialogFragment {
     private EventsDatabase eventsDatabase;
     private Events mEvents;
 
-    SecondScreenViewModel screenViewModel;
+    private SecondScreenViewModel screenViewModel;
     private RecyclerView recyclerView;
-    AlertDialog.Builder builder;
+    private AlertDialog.Builder builder;
 
     //When submitting event data, an event is added
     public EventsDialog(Data data) {
-        eventData =data;
+        eventData = data;
     }
 
     //update event
