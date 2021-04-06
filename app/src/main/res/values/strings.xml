@@ -19,5 +19,16 @@
     <string name="to_many_attempts">Your account has been blocked after multiple consecutive login attempts. We\'ve sent you an email with instructions on how to unblock it.</string>
     <string name="text_free_point">when an unknown printer took a galley of type and scrambled it to make a type specimen book. it has survived not only five centuries.</string>
     <string name="description_dount">Large coffee and toasty sandwich</string>
+    <string name="gregorian">Gregorian :-</string>
+    <string name="hijri">Hijri :-</string>
+    <string name="name_event">Name Event :-</string>
+    <string name="write">Write..</string>
+    <string name="save">Save</string>
+    <string name="there_is_no_hijri_yet">There is no hijri yet</string>
+    <string name="convert">Convert</string>
+    <string name="add_event">Add Event</string>
+    <string name="time_the_event">Time the event:-</string>
+    <string name="name_description">Description :-</string>
+    <string name="go_to_events">Go to Events</string>
 
 </resources>

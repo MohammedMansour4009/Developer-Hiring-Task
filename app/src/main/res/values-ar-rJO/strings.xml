@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Hiring Task</string>
+    <string name="enter_gregorian">"ادخل التاريخ الميلادي "</string>
+    <string name="time_the_event">وقت الحدث</string>
+    <string name="add_event">اضافة حدث</string>
+    <string name="convert">تحويل</string>
+    <string name="there_is_no_hijri_yet">"لايوجد تاريخ بعد "</string>
+    <string name="save">حفظ</string>
+    <string name="write">أكتب</string>
+    <string name="name_description">الوصف</string>
+    <string name="name_event">اسم الحدث</string>
+    <string name="hijri">التاريخ الهجري</string>
+    <string name="gregorian">التاريخ الميلادي</string>
+    <string name="go_to_events">الذهاب الى قائمة الاحداث</string>
+
+</resources>
