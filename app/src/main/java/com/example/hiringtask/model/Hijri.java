@@ -1,25 +1,27 @@
 package com.example.hiringtask.model;
 
+import com.squareup.moshi.Json;
+
 import java.util.List;
 
 
     public class Hijri {
 
-        @com.squareup.moshi.Json(name = "date")
+        @Json(name = "date")
         private String date;
-        @com.squareup.moshi.Json(name = "format")
+        @Json(name = "format")
         private String format;
-        @com.squareup.moshi.Json(name = "day")
+        @Json(name = "day")
         private String day;
-        @com.squareup.moshi.Json(name = "weekday")
+        @Json(name = "weekday")
         private Weekday weekday;
-        @com.squareup.moshi.Json(name = "month")
+        @Json(name = "month")
         private Month month;
-        @com.squareup.moshi.Json(name = "year")
+        @Json(name = "year")
         private String year;
-        @com.squareup.moshi.Json(name = "designation")
+        @Json(name = "designation")
         private Designation designation;
-        @com.squareup.moshi.Json(name = "holidays")
+        @Json(name = "holidays")
         private List<Object> holidays = null;
 
         public String getDate() {

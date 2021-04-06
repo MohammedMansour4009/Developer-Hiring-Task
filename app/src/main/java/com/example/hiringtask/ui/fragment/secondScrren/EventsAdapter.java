@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -21,7 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.CompletableObserver;
-import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -29,21 +30,26 @@ import io.reactivex.schedulers.Schedulers;
 
 public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.carViewHolder> {
     private List<Events> eventsList;
-    private EventsDatabase eventsDatabase;
+    //    private EventsDatabase eventsDatabase;
     Context context;
     FragmentManager fragmentManager;
     RecyclerView recyclerView;
-    public EventsAdapter(FragmentManager fragmentManager) {//Because get data from out
-        eventsDatabase =EventsDatabase.getInstance(context);
-        this.fragmentManager=fragmentManager;
+
+    private SecondScreenViewModel screenViewModel;
+
+    public EventsAdapter(FragmentManager fragmentManager, SecondScreenViewModel secondScreenViewModel) {//Because get data from out
+        this.screenViewModel = secondScreenViewModel;
+
+//        eventsDatabase =EventsDatabase.getInstance(context);
+        this.fragmentManager = fragmentManager;
         this.eventsList = new ArrayList<>();
     }
 
     @Override
     public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
-        context=recyclerView.getContext();
-        this.recyclerView=recyclerView;
+        context = recyclerView.getContext();
+        this.recyclerView = recyclerView;
 
     }
 
@@ -71,32 +77,17 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.carViewHol
         holder.binding.ivIcDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                eventsDatabase.postsDao().delete(events)
-                        .subscribeOn(Schedulers.computation())
-                        .observeOn(AndroidSchedulers.mainThread())//because setList you  should work in main thread
-                        .subscribe(new CompletableObserver() {
-                            @Override
-                            public void onSubscribe(@io.reactivex.annotations.NonNull Disposable d) {
-
-                            }
-
-                            @Override
-                            public void onComplete() {
-                                removeAt(position);
-                            }
-
-                            @Override
-                            public void onError(@io.reactivex.annotations.NonNull Throwable e) {
-                            }
-                        });
+                screenViewModel.delete(events);
+                removeAt(position);
 
             }
         });
 
+
         holder.binding.ivIcEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EventsDialog exampleDialog = new EventsDialog(events,recyclerView);
+                EventsDialog exampleDialog = new EventsDialog(events, screenViewModel, recyclerView);
                 exampleDialog.show(fragmentManager, "exampleDialog");
             }
         });
@@ -118,6 +109,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.carViewHol
         }
 
     }
+
     public void removeAt(int position) {
         eventsList.remove(position);
         notifyItemRemoved(position);

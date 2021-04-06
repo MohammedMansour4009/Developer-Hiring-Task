@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,8 +29,8 @@ public class SecondFragment extends Fragment {
     private FragmentSecondBinding binding;
     private EventsAdapter eventsAdapter;
 
-    private EventsDatabase eventsDatabase;
 
+    private SecondScreenViewModel screenViewModel;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,32 +42,22 @@ public class SecondFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         init();
+        getRemoteAllEvents();
+
     }
 
     private void init() {
-        eventsDatabase = EventsDatabase.getInstance(getContext());
-        eventsAdapter = new EventsAdapter(getActivity().getSupportFragmentManager());
+        screenViewModel = ViewModelProviders.of(this).get(SecondScreenViewModel.class);
 
-        eventsDatabase.postsDao().getEvents()
-                .subscribeOn(Schedulers.computation())
-                .observeOn(AndroidSchedulers.mainThread())//because setList you  should work in main thread
-                .subscribe(new SingleObserver<List<Events>>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
+        eventsAdapter=new EventsAdapter(getFragmentManager(),screenViewModel);
 
-                    }
 
-                    @Override
-                    public void onSuccess(List<Events> posts) {
-                        eventsAdapter.setEventsList(posts);
-                        binding.rvEvents.setAdapter(eventsAdapter);
-                    }
+    }
 
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-                });
-
+    private void getRemoteAllEvents() {
+        screenViewModel.getAllEvents().observe(getViewLifecycleOwner(), events -> {
+            eventsAdapter.setEventsList(events);
+            binding.rvEvents.setAdapter(eventsAdapter);
+        });
     }
 }

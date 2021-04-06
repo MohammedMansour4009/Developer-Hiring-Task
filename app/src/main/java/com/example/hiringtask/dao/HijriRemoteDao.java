@@ -22,7 +22,6 @@ public class HijriRemoteDao {
         return instance;
     }
     public MyCall<RemoteConvert> getData(String data ) {
-
         return dashboardClient.getData(data);
     }
 

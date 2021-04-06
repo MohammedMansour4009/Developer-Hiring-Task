@@ -1,7 +1,6 @@
 package com.example.hiringtask.ui.fragment.firstScrren;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -9,13 +8,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
@@ -23,7 +20,6 @@ import androidx.navigation.Navigation;
 import com.example.hiringtask.databinding.ContentForDialogBinding;
 import com.example.hiringtask.databinding.FragmentFirstScreenBinding;
 import com.example.hiringtask.model.RemoteConvert;
-import com.example.hiringtask.ui.fragment.secondScrren.SecondFragment;
 
 import java.util.Calendar;
 
@@ -33,7 +29,7 @@ public class FirstScreenFragment extends Fragment {
     private static final String TAG = "FirstScreenFragment";
     FragmentFirstScreenBinding binding;
     private DatePickerDialog.OnDateSetListener mOnDateSetListener;
-    private RemoteConvert mRemoteConvert;
+    private RemoteConvert remoteConvert;
 
     private String date;
 
@@ -71,12 +67,7 @@ public class FirstScreenFragment extends Fragment {
     }
 
     private void initButtonConvert() {
-        binding.bConvert.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getRemoteHijri();
-            }
-        });
+        binding.bConvert.setOnClickListener(v -> getRemoteHijri());
     }
 
     private void initSaveDate() {
@@ -84,11 +75,10 @@ public class FirstScreenFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if (mRemoteConvert == null) {
+                if (remoteConvert.getData() == null) {
                     Toast.makeText(getContext(), "Choose a date", Toast.LENGTH_SHORT).show();
                 } else {
-                    EventsDialog exampleDialog = new EventsDialog();
-                    exampleDialog.setData(mRemoteConvert.getData());
+                    EventsDialog exampleDialog = new EventsDialog(remoteConvert.getData());
                     exampleDialog.show(getActivity().getSupportFragmentManager(), "exampleDialog");
                 }
             }
@@ -114,13 +104,10 @@ public class FirstScreenFragment extends Fragment {
                 dialog.show();
             }
         });
-        mOnDateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                date = dayOfMonth + "-" + month + "-" + year;
-                binding.tvGregorian.setText(date);
-                firstScreenViewModel.getRemoteHome(date);
-            }
+        mOnDateSetListener = (view, year, month, dayOfMonth) -> {
+            date = dayOfMonth + "-" + month + "-" + year;
+            binding.tvGregorian.setText(date);
+            firstScreenViewModel.getRemoteHome(date);
         };
     }
 
@@ -131,15 +118,10 @@ public class FirstScreenFragment extends Fragment {
     }
 
     private void getRemoteHijri() {
-        firstScreenViewModel.mutableLiveData.observe(getViewLifecycleOwner(), new Observer<RemoteConvert>() {
-            @Override
-            public void onChanged(RemoteConvert remoteConvert) {
-                mRemoteConvert = remoteConvert;
+        firstScreenViewModel.mutableLiveData.observe(getViewLifecycleOwner(), remoteConvert -> {
+            this.remoteConvert = remoteConvert;
+            binding.setModel(this.remoteConvert);
 
-                binding.tvHijri.setText(mRemoteConvert.getData().getHijri().getDay()
-                        + "-" + mRemoteConvert.getData().getHijri().getMonth().getNumber() +
-                        "-" + mRemoteConvert.getData().getHijri().getYear());
-            }
         });
     }
 

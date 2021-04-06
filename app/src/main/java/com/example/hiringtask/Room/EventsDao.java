@@ -1,5 +1,7 @@
 package com.example.hiringtask.Room;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -17,13 +19,13 @@ public interface EventsDao {
     @Insert
     Completable insertEvents(Events events);
 
-    @Query("select * from post_table")
-    Single<List<Events>> getEvents();
+
     @Delete
     Completable delete(Events events);
 
     @Update
     Completable update(Events events);
 
-
+    @Query("SELECT * FROM post_table ")
+    LiveData<List<Events>> getAllNotes();
 }

@@ -1,89 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragment.firstScrren.FirstScreenFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+        <variable
+            name="model"
+            type="com.example.hiringtask.model.RemoteConvert" />
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".ui.fragment.firstScrren.FirstScreenFragment">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_gregorian"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/enter_gregorian"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginHorizontal="@dimen/_20sdp"
-            android:padding="@dimen/_10sdp"
-            android:textColor="@android:color/black"
-            />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_hijri"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="There is no hijri yet"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginHorizontal="@dimen/_20sdp"
-            android:padding="@dimen/_10sdp"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_gregorian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_gregorian"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:padding="@dimen/_10sdp"
+                android:textColor="@android:color/black"
+                android:text="@{model.data.gregorian.date}"
+                />
 
-            />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_hijri"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="There is no hijri yet"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:padding="@dimen/_10sdp"
+                android:text="@{model.data.hijri.date}"
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/b_convert"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/tv_gregorian"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="Convert"
-            android:backgroundTint="@android:color/white"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            app:strokeColor="@android:color/black"
-            app:strokeWidth="@dimen/_2sdp"
-            android:textSize="@dimen/_10sdp"
-            android:textColor="@android:color/black"
-            android:layout_marginTop="@dimen/_15sdp"
-            />
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/b_save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/b_convert"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="Save  Date"
-            android:backgroundTint="@android:color/white"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            app:strokeColor="@android:color/black"
-            app:strokeWidth="@dimen/_2sdp"
-            android:textSize="@dimen/_10sdp"
-            android:textColor="@android:color/black"
-            />
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/b_go_to_events"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/b_save"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="Go to Events"
-            android:backgroundTint="@android:color/white"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            app:strokeColor="@android:color/black"
-            app:strokeWidth="@dimen/_2sdp"
-            android:textSize="@dimen/_10sdp"
-            android:textColor="@android:color/black"
-            />
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/b_convert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tv_gregorian"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="Convert"
+                android:backgroundTint="@android:color/white"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                app:strokeColor="@android:color/black"
+                app:strokeWidth="@dimen/_2sdp"
+                android:textSize="@dimen/_10sdp"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="@dimen/_15sdp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/b_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/b_convert"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="Add Event "
+                android:backgroundTint="@android:color/white"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                app:strokeColor="@android:color/black"
+                app:strokeWidth="@dimen/_2sdp"
+                android:textSize="@dimen/_10sdp"
+                android:textColor="@android:color/black" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/b_go_to_events"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/b_save"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="Go to Events"
+                android:backgroundTint="@android:color/white"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                app:strokeColor="@android:color/black"
+                app:strokeWidth="@dimen/_2sdp"
+                android:textSize="@dimen/_10sdp"
+                android:textColor="@android:color/black" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-</FrameLayout>
+    </FrameLayout>
+</layout>
