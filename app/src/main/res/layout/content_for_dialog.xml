@@ -108,7 +108,7 @@
             app:layout_constraintTop_toTopOf="@id/tv_description_event" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/b_save_dialog"
+            android:id="@+id/btn_save_dialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/tv_description_event"
